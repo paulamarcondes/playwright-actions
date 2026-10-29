@@ -2,11 +2,13 @@
   "name": "login-xp-playwright",
   "version": "1.0.0",
   "description": "Login test project with Playwright",
-  "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "e2e"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report"
+  },
   "author": "Fernando Papito",
   "license": "MIT",
   "devDependencies": {

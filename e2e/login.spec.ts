@@ -1,27 +1,27 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test'
 
 test('username is required', async ({ page }) => {
   await login(page, '', 'password123')
   await toast(page, 'Informe o seu nome de usuário!')
-});
+})
 
 test('password is required', async ({ page }) => {
-  await login(page,'qa', '')
+  await login(page, 'qa', '')
   await toast(page, 'Informe a sua senha secreta!')
 })
 
 test('user does not exist', async ({ page }) => {
-  await login(page,'test', 'test')
+  await login(page, 'test', 'test')
   await toast(page, 'Oops! Credenciais inválidas :(')
 })
 
 test('incorrect password', async ({ page }) => {
-  await login(page,'qa', 'test')
+  await login(page, 'qa', 'test')
   await toast(page, 'Oops! Credenciais inválidas :(')
 })
 
 test('login successfully', async ({ page }) => {
-  await login(page,'qa', 'xperience')
+  await login(page, 'qa', 'xperience')
   await modal(page, 'Suas credenciais são válidas :)')
 })
 
@@ -29,26 +29,22 @@ test('login successfully', async ({ page }) => {
 // because they must match the app's UI text exactly.
 const toast = async (page: Page, message: string) => {
   const target = page.locator('div[role=status]')
-  await expect(target).toHaveText(message);
+  await expect(target).toHaveText(message)
 }
 
 const modal = async (page: Page, message: string) => {
   const target = page.locator('.swal2-html-container')
-  await expect(target).toHaveText(message);
+  await expect(target).toHaveText(message)
 }
 
 const login = async (page: Page, user: string, pass: string) => {
-    await page.goto('/')
+  await page.goto('/')
 
-    const username = page.locator('[name=user]')
-    const password = page.locator('[name=pass]')
+  const username = page.locator('[name=user]')
+  const password = page.locator('[name=pass]')
 
-    user 
-      ? await username.fill(user) : null
+  if (user) await username.fill(user)
+  if (pass) await password.fill(pass)
 
-    pass
-      ? await password.fill(pass) : null
-
-    await page.click('css=button >> text=Entrar')
+  await page.getByRole('button', { name: 'Entrar' }).click()
 }
-
