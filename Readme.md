@@ -1,31 +1,32 @@
-![poster](./.github/poster.png)
+![Course poster: Continuous testing workflow with Playwright on GitHub Actions - Intermediate Level](./.github/poster.png)
 
-## Sobre
+## About
 
-Repositório do treinamento: Workflow de testes contínuos em Playwright no Github Actions
+Training repository: Continuous testing workflow with Playwright on GitHub Actions
+
+Forked from Fernando Papito's QAx course.
 
 ## Stacks
 - Playwright
 - TypeScript
 - Tesults
 
-## Rodando
+## Running
 
-1. Clonar o repositório, instalar as dependências
+1. Clone the repository and install the dependencies
 ```
 npm install
 ```
 
-2. Executar testes em Headless
+2. Run the tests in headless mode
 ```
 npx playwright test 
 ```
 
-3. Executar ver o relatório dos testes
+3. Open the test report
 ```
 npx playwright show-report
 ```
 
 <hr>
-Curso disponível em https://qaxperience.com
-
+Available at https://github.com/qaxperience/playwright-actions-template

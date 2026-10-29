@@ -1,30 +1,32 @@
 import { test, expect, Page } from '@playwright/test';
 
-test('usuário obrigatório', async ({ page }) => {
-  await login(page, '', 'senha123')
-  await toast(page, 'Informe o seu nome de usuário!s')
+test('username is required', async ({ page }) => {
+  await login(page, '', 'password123')
+  await toast(page, 'Informe o seu nome de usuário!')
 });
 
-test('senha obrigatória', async ({ page }) => {
+test('password is required', async ({ page }) => {
   await login(page,'qa', '')
   await toast(page, 'Informe a sua senha secreta!')
 })
 
-test('usuário não existe', async ({ page }) => {
-  await login(page,'teste', 'teste')
+test('user does not exist', async ({ page }) => {
+  await login(page,'test', 'test')
   await toast(page, 'Oops! Credenciais inválidas :(')
 })
 
-test('senha incorreta', async ({ page }) => {
-  await login(page,'qa', 'teste')
+test('incorrect password', async ({ page }) => {
+  await login(page,'qa', 'test')
   await toast(page, 'Oops! Credenciais inválidas :(')
 })
 
-test('com sucesso', async ({ page }) => {
+test('login successfully', async ({ page }) => {
   await login(page,'qa', 'xperience')
   await modal(page, 'Suas credenciais são válidas :)')
 })
 
+// Expected messages and the 'Entrar' (Log in) button text are in Portuguese
+// because they must match the app's UI text exactly.
 const toast = async (page: Page, message: string) => {
   const target = page.locator('div[role=status]')
   await expect(target).toHaveText(message);
